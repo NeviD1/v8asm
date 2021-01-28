@@ -1536,6 +1536,7 @@
 					<v8:content>Открыть</v8:content>
 				</v8:item>
 			</ToolTip>
+			<Shortcut>Ctrl+O</Shortcut>
 			<Action>ОткрытьФайл</Action>
 			<CurrentRowUse>DontUse</CurrentRowUse>
 		</Command>
@@ -1604,6 +1605,7 @@
 					<v8:content>Сохранить</v8:content>
 				</v8:item>
 			</ToolTip>
+			<Shortcut>Ctrl+S</Shortcut>
 			<Action>Сохранить</Action>
 			<CurrentRowUse>DontUse</CurrentRowUse>
 		</Command>
@@ -1620,6 +1622,7 @@
 					<v8:content>Запустить</v8:content>
 				</v8:item>
 			</ToolTip>
+			<Shortcut>F5</Shortcut>
 			<Picture>
 				<xr:Ref>StdPicture.GenerateReport</xr:Ref>
 				<xr:LoadTransparent>true</xr:LoadTransparent>
