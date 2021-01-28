@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.9">
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.9.1">
 	<SaveDataInSettings>UseList</SaveDataInSettings>
 	<ScalingMode>Compact</ScalingMode>
 	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
@@ -168,6 +168,7 @@
 						</InputField>
 						<InputField name="ОперацииКодОперации" id="165">
 							<DataPath>Операции.КодОперации</DataPath>
+							<ReadOnly>true</ReadOnly>
 							<EditMode>EnterOnInput</EditMode>
 							<ContextMenu name="ОперацииКодОперацииКонтекстноеМеню" id="166"/>
 							<ExtendedTooltip name="ОперацииКодОперацииРасширеннаяПодсказка" id="167"/>
@@ -266,6 +267,7 @@
 											</SearchControlAddition>
 											<Events>
 												<Event name="OnEditEnd">КонстантыПриОкончанииРедактирования</Event>
+												<Event name="AfterDeleteRow">КонстантыПослеУдаления</Event>
 											</Events>
 											<ChildItems>
 												<InputField name="КонстантыНомер" id="126">
@@ -440,7 +442,32 @@
 												<ContextMenu name="ПеременныеУправлениеПоискомКонтекстноеМеню" id="60"/>
 												<ExtendedTooltip name="ПеременныеУправлениеПоискомРасширеннаяПодсказка" id="61"/>
 											</SearchControlAddition>
+											<Events>
+												<Event name="OnEditEnd">ПеременныеПриОкончанииРедактирования</Event>
+												<Event name="AfterDeleteRow">ПеременныеПослеУдаления</Event>
+											</Events>
 											<ChildItems>
+												<InputField name="ПеременныеНомер" id="170">
+													<DataPath>Переменные.Номер</DataPath>
+													<ReadOnly>true</ReadOnly>
+													<TitleLocation>None</TitleLocation>
+													<EditMode>EnterOnInput</EditMode>
+													<Width>3</Width>
+													<Format>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>ЧН=0</v8:content>
+														</v8:item>
+													</Format>
+													<EditFormat>
+														<v8:item>
+															<v8:lang>ru</v8:lang>
+															<v8:content>ЧН=0</v8:content>
+														</v8:item>
+													</EditFormat>
+													<ContextMenu name="ПеременныеНомерКонтекстноеМеню" id="171"/>
+													<ExtendedTooltip name="ПеременныеНомерРасширеннаяПодсказка" id="172"/>
+												</InputField>
 												<InputField name="ПеременныеИмяПеременной" id="62">
 													<DataPath>Переменные.ИмяПеременной</DataPath>
 													<EditMode>EnterOnInput</EditMode>
@@ -512,8 +539,10 @@
 												<ExtendedTooltip name="ПроцедурыУправлениеПоискомРасширеннаяПодсказка" id="86"/>
 											</SearchControlAddition>
 											<Events>
+												<Event name="OnEditEnd">ПроцедурыПриОкончанииРедактирования</Event>
 												<Event name="BeforeEditEnd">ПроцедурыПередОкончаниемРедактирования</Event>
 												<Event name="OnStartEdit">ПроцедурыПриНачалеРедактирования</Event>
+												<Event name="AfterDeleteRow">ПроцедурыПослеУдаления</Event>
 											</Events>
 											<ChildItems>
 												<InputField name="ПроцедурыНомер" id="129">
@@ -656,7 +685,32 @@
 																<ContextMenu name="ПроцедурыПеременныеУправлениеПоискомКонтекстноеМеню" id="110"/>
 																<ExtendedTooltip name="ПроцедурыПеременныеУправлениеПоискомРасширеннаяПодсказка" id="111"/>
 															</SearchControlAddition>
+															<Events>
+																<Event name="OnEditEnd">ПроцедурыПеременныеПриОкончанииРедактирования</Event>
+																<Event name="AfterDeleteRow">ПроцедурыПеременныеПослеУдаления</Event>
+															</Events>
 															<ChildItems>
+																<InputField name="ПроцедурыПеременныеНомер" id="173">
+																	<DataPath>Items.Процедуры.CurrentData.Переменные.Номер</DataPath>
+																	<ReadOnly>true</ReadOnly>
+																	<TitleLocation>None</TitleLocation>
+																	<EditMode>EnterOnInput</EditMode>
+																	<Width>3</Width>
+																	<Format>
+																		<v8:item>
+																			<v8:lang>ru</v8:lang>
+																			<v8:content>ЧН=0</v8:content>
+																		</v8:item>
+																	</Format>
+																	<EditFormat>
+																		<v8:item>
+																			<v8:lang>ru</v8:lang>
+																			<v8:content>ЧН=0</v8:content>
+																		</v8:item>
+																	</EditFormat>
+																	<ContextMenu name="ПроцедурыПеременныеНомерКонтекстноеМеню" id="174"/>
+																	<ExtendedTooltip name="ПроцедурыПеременныеНомерРасширеннаяПодсказка" id="175"/>
+																</InputField>
 																<InputField name="ПроцедурыПеременныеИмяПеременной" id="112">
 																	<DataPath>Items.Процедуры.CurrentData.Переменные.ИмяПеременной</DataPath>
 																	<EditMode>EnterOnInput</EditMode>
@@ -728,7 +782,32 @@
 																<ContextMenu name="ПроцедурыУмолчанияУправлениеПоискомКонтекстноеМеню" id="149"/>
 																<ExtendedTooltip name="ПроцедурыУмолчанияУправлениеПоискомРасширеннаяПодсказка" id="150"/>
 															</SearchControlAddition>
+															<Events>
+																<Event name="OnEditEnd">ПроцедурыУмолчанияПриОкончанииРедактирования</Event>
+																<Event name="AfterDeleteRow">ПроцедурыУмолчанияПослеУдаления</Event>
+															</Events>
 															<ChildItems>
+																<InputField name="ПроцедурыУмолчанияНомер" id="176">
+																	<DataPath>Items.Процедуры.CurrentData.Умолчания.Номер</DataPath>
+																	<ReadOnly>true</ReadOnly>
+																	<TitleLocation>None</TitleLocation>
+																	<EditMode>EnterOnInput</EditMode>
+																	<Width>3</Width>
+																	<Format>
+																		<v8:item>
+																			<v8:lang>ru</v8:lang>
+																			<v8:content>ЧН=0</v8:content>
+																		</v8:item>
+																	</Format>
+																	<EditFormat>
+																		<v8:item>
+																			<v8:lang>ru</v8:lang>
+																			<v8:content>ЧН=0</v8:content>
+																		</v8:item>
+																	</EditFormat>
+																	<ContextMenu name="ПроцедурыУмолчанияНомерКонтекстноеМеню" id="177"/>
+																	<ExtendedTooltip name="ПроцедурыУмолчанияНомерРасширеннаяПодсказка" id="178"/>
+																</InputField>
 																<InputField name="ПроцедурыУмолчанияТип" id="151">
 																	<DataPath>Items.Процедуры.CurrentData.Умолчания.Тип</DataPath>
 																	<EditMode>EnterOnInput</EditMode>
@@ -1079,6 +1158,22 @@
 							</v8:NumberQualifiers>
 						</Type>
 					</Column>
+					<Column name="Номер" id="3">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Номер</v8:content>
+							</v8:item>
+						</Title>
+						<Type>
+							<v8:Type>xs:decimal</v8:Type>
+							<v8:NumberQualifiers>
+								<v8:Digits>10</v8:Digits>
+								<v8:FractionDigits>0</v8:FractionDigits>
+								<v8:AllowedSign>Any</v8:AllowedSign>
+							</v8:NumberQualifiers>
+						</Type>
+					</Column>
 				</AdditionalColumns>
 				<AdditionalColumns table="Процедуры.Умолчания">
 					<Column name="Тип" id="1">
@@ -1109,6 +1204,22 @@
 								<v8:Length>0</v8:Length>
 								<v8:AllowedLength>Variable</v8:AllowedLength>
 							</v8:StringQualifiers>
+						</Type>
+					</Column>
+					<Column name="Номер" id="3">
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Номер</v8:content>
+							</v8:item>
+						</Title>
+						<Type>
+							<v8:Type>xs:decimal</v8:Type>
+							<v8:NumberQualifiers>
+								<v8:Digits>10</v8:Digits>
+								<v8:FractionDigits>0</v8:FractionDigits>
+								<v8:AllowedSign>Any</v8:AllowedSign>
+							</v8:NumberQualifiers>
 						</Type>
 					</Column>
 				</AdditionalColumns>
@@ -1148,6 +1259,22 @@
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Флаги переменной</v8:content>
+						</v8:item>
+					</Title>
+					<Type>
+						<v8:Type>xs:decimal</v8:Type>
+						<v8:NumberQualifiers>
+							<v8:Digits>10</v8:Digits>
+							<v8:FractionDigits>0</v8:FractionDigits>
+							<v8:AllowedSign>Any</v8:AllowedSign>
+						</v8:NumberQualifiers>
+					</Type>
+				</Column>
+				<Column name="Номер" id="3">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номер</v8:content>
 						</v8:item>
 					</Title>
 					<Type>
